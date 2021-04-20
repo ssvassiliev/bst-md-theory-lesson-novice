@@ -123,7 +123,7 @@ Sometimes you may want to compare simulations starting from different initial co
 >>  
 >>~~~
 >>mol new 1ERT.pdb
->>set s [atomselect top "(protein and altloc '') or (altloc B and resid 20) or >(altloc A and resid 43 90)"]
+>>set s [atomselect top "(protein and altloc '') or (altloc B and resid 20) or (altloc A and resid 43 90)"]
 >>$s writepdb protein_20B_43A_90A.pdb
 >>quit
 >>~~~
