@@ -142,7 +142,7 @@ For simulation preparation with the AMBER `tleap` program, cross-linked cysteine
 
 Installation
 ~~~
-~/scratch/workshop/scripts/install_check_structure.sh 
+~/scratch/workshop/scripts/install_tools.sh 
 ~~~
 {: .bash}
 
