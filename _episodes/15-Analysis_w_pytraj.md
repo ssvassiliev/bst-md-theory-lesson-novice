@@ -176,21 +176,21 @@ import pytraj as pt
 import numpy as np
 from matplotlib import pyplot as plt
 
-%cd ~/scratch/Ago-RNA_sim/sim_pmemd/2-production/
+%cd ~/scratch/workshop/pdb/6N4O/simulation/sim_pmemd/4-production
 ~~~
 {: .python}
 
 Load the topology and the trajectory:
 
 ~~~
-traj=pt.iterload('mdcrd', top = 'prmtop.parm7')
+traj=pt.iterload('mdcrd_nowat.nc', top = 'prmtop_nowat.parm7') 
 ~~~
 {: .python}
 
 The `iterload` method can load multiple trajectories, supplied as a python list. You can also select slices from each of the trajectories, for example:
 
 ~~~
-test=pt.iterload('mdcrd', top = 'prmtop.parm7', frame_slice=[(100, 110)]) 
+test=pt.iterload('mdcrd_nowat.nc', top = 'prmtop_nowat.parm7', frame_slice=[(100, 110)]) 
 ~~~
 
 will load only frames from 100 to 110 from mdcrd.
@@ -205,8 +205,8 @@ print(test[0:8:2])
 print(test[::2])
 print(test[0:8:2, ':U'])
 print(test[0:8:2, ':U@P'])
-traj[8:2:-2, '!:WAT']
-traj[8:2:-2, '!:WAT & !@H']
+test[8:2:-2, '!:WAT']
+test[8:2:-2, '!:WAT & !@H']
 ~~~
 {: .python}
 
@@ -475,9 +475,13 @@ view.display(gui=True)
 ### Principal component analysis
 Nucleic backbone: :@O3',C3',C4',C5',O5',P
 
+### Cross-correlation analysis.
+Collective motions of atoms in proteins are crucial for the biological function. This information is difficult to obtain experimentally, but molecular dynamics trajectories provide this information. The dynamic correlation between all atoms within the system can be obtained by analysing atomic motions in the simulation. 
 
-### Cross-correlation analysis. Compare windows of 200 ps. pytraj-atomiccorr
+The pytraj dynamic cross-correlation module *atomiccorr* computes an NxN matrix, where N is the number of atoms included in the analysis. Each matrix element describes the degree to which a pair of atoms i and j move together. The correlation values lie between -1 and 1, where 1 describes full correlation, and -1 corresponds to anti-correlation.
+
 [Dynamical cross-correlation matrices](https://pubmed.ncbi.nlm.nih.gov/7563068/)
+
 
 #### Jupyter Hub challenges
 
